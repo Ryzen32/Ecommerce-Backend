@@ -1,4 +1,5 @@
 const Navbar = require("../models/Navbar");
+const Product = require("../models/Product");
 
 /* ADD to NAVBAR */
 const addNavbarItem = async (req, res) => {
@@ -21,7 +22,7 @@ const getNavbarProducts = async (req, res) => {
   const query = req.query.q;
   const regex = new RegExp(query, "i");
   try {
-    const navbars = await Navbar.find({
+    const navbars = await Product.find({
       $or: [{ title: regex }, { description: regex }],
     });
     res.status(200).json(navbars);
