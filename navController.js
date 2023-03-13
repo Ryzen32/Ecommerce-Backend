@@ -19,11 +19,10 @@ const addNavbarItem = async (req, res) => {
 
 /* GET ALL THE PRODUCTS */
 const getNavbarProducts = async (req, res) => {
-  const query = req.query.q;
-  const regex = new RegExp(query, "i");
+  const { q } = req.query;
   try {
     const navbars = await Product.find({
-      $or: [{ name: regex }],
+      name: { $regex: ".*" + q, $options: "i" },
     });
     res.status(200).json(navbars);
   } catch (error) {
