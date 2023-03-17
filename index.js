@@ -7,7 +7,7 @@ const { cartRoutes } = require("./src/routes/carts");
 const { orderRoute } = require("./src/routes/orders");
 const { connect } = require("./src/config/db");
 const { navbarRoutes } = require("./src/routes/navbar");
-
+const {PasswordReseter}=require("./src/routes/Password")
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -22,6 +22,7 @@ app.get("/", (req, res) => {
 
 /* ROUTES */
 app.use("/users", userRoutes);
+app.use("/password", PasswordReseter);
 app.use("/products", productRoute);
 app.use("/carts", cartRoutes);
 app.use("/orders", orderRoute);
