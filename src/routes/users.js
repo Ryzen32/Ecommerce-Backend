@@ -10,11 +10,12 @@ const {
 } = require("../controllers/userController");
 
 const { VerifyAdmin, CartMiddleWare } = require("../middlewares/verifyToken");
+const { verifyUser } = require("../middlewares/VerifyUser");
 
 const userRoutes = express.Router();
 
 /* SIGNUP */
-userRoutes.post("/signup", userSignup);
+userRoutes.post("/signup", verifyUser, userSignup);
 
 /* LOGIN */
 userRoutes.post("/login", userLogin);
@@ -34,7 +35,7 @@ userRoutes.patch("/singleuser", CartMiddleWare, updateUserById);
 /* DELETE USER */
 userRoutes.delete("/:id", VerifyAdmin, deleteUser);
 
-module.exports = {userRoutes};
+module.exports = { userRoutes };
 
 // firstName
 // lastName
